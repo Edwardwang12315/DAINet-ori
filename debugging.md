@@ -1,2 +1,3 @@
-**6.9**
-- 直接端到端的训练会出现在75到99个epoch没有任何的损失收敛趋势
+```python
+python -m torch.distributed.launch --nproc_per_node=$NUM_OF_GPUS$ train.py
+```

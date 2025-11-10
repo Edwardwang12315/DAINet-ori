@@ -38,7 +38,7 @@ _C.filter_min_face = True
 # train config
 _C.LR_STEPS = (10000*2,12500*2,15000*2)
 _C.MAX_STEPS = 150000
-_C.EPOCHES = 100
+_C.EPOCHES = 150
 
 # anchor config
 _C.FEATURE_MAPS = [160, 80, 40, 20, 10, 5]
@@ -58,7 +58,7 @@ _C.CONF_THRESH = 0.05
 
 # loss config
 _C.NEG_POS_RATIOS = 3
-_C.NUM_CLASSES = 2
+_C.NUM_CLASSES = 12
 
 _C.WEIGHT = EasyDict()
 _C.WEIGHT.EQUAL_R = 0.01
@@ -68,8 +68,8 @@ _C.WEIGHT.MC = 0.1
 
 # face config
 _C.FACE = EasyDict()
-_C.FACE.TRAIN_FILE = '../../dataset/WiderFace/wider_face_train.txt'
-_C.FACE.VAL_FILE = '../../dataset/WiderFace/wider_face_val.txt'
+_C.FACE.TRAIN_FILE = 'coco2widerface.txt'
+_C.FACE.VAL_FILE = 'coco2widerface.txt'
 
 _C.FACE.OVERLAP_THRESH = 0.35
 

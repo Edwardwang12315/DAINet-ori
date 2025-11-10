@@ -27,9 +27,9 @@ from PIL import Image
 
 parser = argparse.ArgumentParser(
     description='DSFD face Detector Training With Pytorch')
-train_set = parser.add_mutually_exclusive_group()
+# train_set = parser.add_mutually_exclusive_group()
 parser.add_argument('--batch_size',
-                    default=3, type=int, # server 上为3
+                    default=2, type=int, # server 上为3
                     help='Batch size for training')
 parser.add_argument('--model',
                     default='dark', type=str,
@@ -39,7 +39,7 @@ parser.add_argument('--resume',
                     default=None, type=str,
                     help='Checkpoint state_dict file to resume training from')
 parser.add_argument('--num_workers',
-                    default=32, type=int,
+                    default=16, type=int,
                     help='Number of workers used in dataloading')
 parser.add_argument('--cuda',
                     default=True, type=bool,
@@ -280,7 +280,7 @@ def train():
             if iteration != 0 and iteration % 5000 == 0:
                 if local_rank == 0:
                     print('Saving state, iter:', iteration)
-                    file = 'dsfd_' + repr(iteration) + '.pth'
+                    file = 'dainet_' + repr(iteration) + '.pth'
                     torch.save(dsfd_net.state_dict(),
                                os.path.join(save_folder, file))
             iteration += 1
@@ -329,7 +329,7 @@ def val(epoch, net, dsfd_net, net_enh, criterion):
         if local_rank == 0:
             print('Saving best state,epoch', epoch)
             torch.save(dsfd_net.state_dict(), os.path.join(
-                save_folder, 'dsfd.pth'))
+                save_folder, 'dainet_ori.pth'))
         min_loss = tloss
 
     states = {
